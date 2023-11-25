@@ -277,3 +277,63 @@ function editStudent($fichier_csv, $data) {
     }
     fclose($csvFile);
 }
+
+function getDataClass(){
+    $data = [];
+
+    if (($handle = fopen("CSV/class.csv", 'r')) !== false) {
+        while (($row = fgetcsv($handle, 1000, ',')) !== false) {
+            // On saute la 1er ligne
+            if ($row[0] === 'id') {
+                continue;
+            }
+            // Vérification du nombre de colonnes
+            if (count($row) === 3) {
+                $id = $row[0];
+                $data[$id] = [
+                    'name' => $row[1],
+                    'level' => $row[2],
+                ];
+            } 
+        }
+        fclose($handle);
+    } else {
+        // Gestion de l'erreur lors de l'ouverture du fichier
+        die("Erreur lors de l'ouverture du fichier CSV.");
+    }
+
+    return $data;
+}
+
+function handleClassRequestPatch($classId){
+    if($_SERVER['REQUEST_METHOD'] === 'PATCH'){
+        $patchData = json_decode(file_get_contents('php://input'), true);
+
+        // On détermine quelles données ont été envoyées
+        // echo json_encode($patchData);    
+
+        $data = getDataClass();
+        // on détermine si name existe
+        if(isset($patchData['name'])){
+            $data[$classId]['name'] = $patchData['name'];
+        }
+        // on détermine si level existe
+        if(isset($patchData['level'])){
+            $data[$classId]['level'] = $patchData['level'];
+        }
+        echo json_encode($data[$classId]);
+
+        // On réécrit le fichier CSV
+        $csvFile = fopen("CSV/class.csv", "w"); // Utilise le mode "w" pour vider le fichier avant d'écrire
+
+        //Réécrit la 1er ligne
+        fputcsv($csvFile, ["id", "name", "level"]);
+
+        $i = 0;
+        foreach ($data as $row) {
+            $i++;
+            fputcsv($csvFile, [$i, $row['name'], $row['level']]);
+        }
+        fclose($csvFile);
+    }
+}

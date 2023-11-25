@@ -9,6 +9,7 @@ $data = [];
 
 switch ($uri) {
     case '/class':
+        var_dump(getDataClass());
         handleClassRequest();
         break;
 
@@ -22,6 +23,7 @@ switch ($uri) {
             $data = searchById(readCSV("CSV/class.csv"), $classId);
         }
         handleClassRequestPut($classId);
+        handleClassRequestPatch($classId);
         break;
     
     case preg_match('/\/students\/(\d+)/', $uri, $matches) ? true : false:
