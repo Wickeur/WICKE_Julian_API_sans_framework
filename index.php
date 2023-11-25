@@ -31,7 +31,8 @@ switch ($uri) {
         if($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = searchById(readCSV("CSV/students.csv"), $studentId);
         }
-        handleStudentsRequestPut($studentId);
+        handleStudentRequestPut($studentId);
+        handleStudentRequestPatch($studentId);
         break;
 
     default:

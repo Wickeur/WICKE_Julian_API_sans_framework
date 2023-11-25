@@ -166,7 +166,7 @@ function handleClassRequestPut($classId){
     }
 }
 
-function handleStudentsRequestPut($studentId){
+function handleStudentRequestPut($studentId){
     if($_SERVER['REQUEST_METHOD'] === 'PUT'){
         $putData = json_decode(file_get_contents('php://input'), true);
 
@@ -278,6 +278,9 @@ function editStudent($fichier_csv, $data) {
     fclose($csvFile);
 }
 
+/**
+ * Fonction pour récupérer les données de la classe
+ */
 function getDataClass(){
     $data = [];
 
@@ -305,12 +308,51 @@ function getDataClass(){
     return $data;
 }
 
+/**
+ * Fonction pour récupérer les données des étudiants
+ */
+function getDataStudients(){
+    $data = [];
+
+    if (($handle = fopen("CSV/students.csv", 'r')) !== false) {
+        while (($row = fgetcsv($handle, 1000, ',')) !== false) {
+            // On saute la 1er ligne
+            if ($row[0] === 'id') {
+                continue;
+            }
+            // Vérification du nombre de colonnes
+            if (count($row) === 9) {
+                $id = $row[0];
+                $data[$id] = [
+                    'lastname' => $row[1],
+                    'firstname' => $row[2],
+                    'email' => $row[3],
+                    'phone' => $row[4],
+                    'address' => $row[5],
+                    'zip' => $row[6],
+                    'city' => $row[7],
+                    'class' => $row[8],
+                ];
+            } 
+        }
+        fclose($handle);
+    } else {
+        // Gestion de l'erreur lors de l'ouverture du fichier
+        die("Erreur lors de l'ouverture du fichier CSV.");
+    }
+
+    return $data;
+}
+
+/**
+ * Fonction pour gérer les requêtes patch pour la route /class
+ */
 function handleClassRequestPatch($classId){
     if($_SERVER['REQUEST_METHOD'] === 'PATCH'){
         $patchData = json_decode(file_get_contents('php://input'), true);
 
         // On détermine quelles données ont été envoyées
-        // echo json_encode($patchData);    
+        echo json_encode($patchData);    
 
         $data = getDataClass();
         // on détermine si name existe
@@ -334,6 +376,57 @@ function handleClassRequestPatch($classId){
             $i++;
             fputcsv($csvFile, [$i, $row['name'], $row['level']]);
         }
+        fclose($csvFile);
+    }
+}
+
+function handleStudentRequestPatch($studentId){
+    if($_SERVER['REQUEST_METHOD'] === 'PATCH'){
+        $patchData = json_decode(file_get_contents('php://input'), true);   
+
+        // On détermine quelles données ont été envoyées
+        echo json_encode($patchData);
+
+        $data = getDataStudients();
+
+        if(isset($patchData['lastname'])){
+            $data[$studentId]['lastname'] = $patchData['lastname'];
+        }
+        if(isset($patchData['firstname'])){
+            $data[$studentId]['firstname'] = $patchData['firstname'];
+        }
+        if(isset($patchData['email'])){
+            $data[$studentId]['email'] = $patchData['email'];
+        }
+        if(isset($patchData['phone'])){
+            $data[$studentId]['phone'] = $patchData['phone'];
+        }
+        if(isset($patchData['address'])){
+            $data[$studentId]['address'] = $patchData['address'];
+        }
+        if(isset($patchData['zip'])){
+            $data[$studentId]['zip'] = $patchData['zip'];
+        }
+        if(isset($patchData['city'])){
+            $data[$studentId]['city'] = $patchData['city'];
+        }
+        if(isset($patchData['class'])){
+            $data[$studentId]['class'] = $patchData['class'];
+        }
+        echo json_encode($data[$studentId]);
+
+        // On réécrit le fichier CSV
+        $csvFile = fopen("CSV/students.csv", "w"); // Utilise le mode "w" pour vider le fichier avant d'écrire
+
+        //Réécrit la 1er ligne
+        fputcsv($csvFile, ["id", "lastname", "firstname", "email", "phone", "address", "zip", "city", "class"]);
+
+        $i = 0;
+        foreach ($data as $row) {
+            $i++;
+            fputcsv($csvFile, [$i, $row['lastname'], $row['firstname'], $row['email'], $row['phone'], $row['address'], $row['zip'], $row['city'], $row['class']]);
+        }
+
         fclose($csvFile);
     }
 }
