@@ -13,13 +13,13 @@ $data = [];
 
 switch ($uri) {
     case '/class':
-        echo json_encode(getDataClass());
         handleClassRequest();
+        echo json_encode(getDataClass());
         break;
 
     case '/students':
-        echo json_encode(getDataStudents());
         handleStudentRequest();
+        echo json_encode(getDataStudents());
         break;
 
     case preg_match('/\/class\/(\d+)/', $uri, $matches) ? true : false:
@@ -45,6 +45,3 @@ switch ($uri) {
         echo json_encode(['error' => 'Route non reconnue']);
         exit;
 }
-
-// echo json_encode($data);
-

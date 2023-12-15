@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une Classe</title>
+</head>
+
+<body>
+    <div class="mb-3">
+        <h3>Ajouter une Classe</h3>
+        <form id="addClassForm">
+            <label for="className">Nom de la classe:</label>
+            <input type="text" id="className" class="form-control" required>
+            <label for="classLevel">Niveau de la classe:</label>
+            <input type="text" id="classLevel" class="form-control" required>
+            <button type="button" class="btn btn-primary mt-2" onclick="addClass()">Ajouter Classe</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="add-class.js"></script>
+</body>
+
+</html>

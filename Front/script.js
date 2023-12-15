@@ -142,44 +142,5 @@ function addClass() {
     });
 }
 
-// Fonction pour ajouter un étudiant
-function addStudent() {
-    var studentLastName = document.getElementById('studentLastName').value;
-    var studentFirstName = document.getElementById('studentFirstName').value;
-    var studentEmail = document.getElementById('studentEmail').value;
-    var studentPhone = document.getElementById('studentPhone').value;
-    var studentAddress = document.getElementById('studentAddress').value;
-    var studentZip = document.getElementById('studentZip').value;
-    var studentCity = document.getElementById('studentCity').value;
-    var studentClass = document.getElementById('studentClass').value;
-
-    // Effectuez une requête AJAX vers votre API pour ajouter l'étudiant
-    // Utilisez la méthode POST et envoyez les données au format JSON
-
-    // Exemple avec jQuery
-    $.ajax({
-        url: 'http://localhost:8000/students',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            lastname: studentLastName,
-            firstname: studentFirstName,
-            email: studentEmail,
-            phone: studentPhone,
-            address: studentAddress,
-            zip: studentZip,
-            city: studentCity,
-            class: studentClass
-        }),
-        success: function (response) {
-            // Actualisez la liste des étudiants après l'ajout
-            getStudentList();
-        },
-        error: function (error) {
-            console.error('Erreur lors de l\'ajout de l\'étudiant:', error);
-        }
-    });
-}
-
 getClassList();
 getStudentList();
