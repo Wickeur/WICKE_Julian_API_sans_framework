@@ -60,8 +60,25 @@ function redirectToUpdatePageClass(classId) {
     window.location.href = 'update-class/update-class.html?id=' + classId;
 }
 
+// Fonction pour récupérer le nom de la classe à partir de l'ID de classe
+function getClassName(classId) {
+    return new Promise(function(resolve, reject) {
+        $.ajax({
+            url: 'http://localhost:8000/class',
+            type: 'GET',
+            success: function(response) {
+                var className = response[classId].name;
+                resolve(className);
+            },
+            error: function(error) {
+                reject('Erreur lors de la récupération du nom de la classe:', error);
+            }
+        });
+    });
+}
+
 // Fonction pour afficher la liste des étudiants en format tableau
-function displayStudentList(students) {
+async function displayStudentList(students) {
     var studentTable = document.getElementById('studentTable');
     studentTable.innerHTML = '';
 
@@ -75,22 +92,29 @@ function displayStudentList(students) {
         if (students.hasOwnProperty(studentId)) {
             var studentItem = students[studentId];
 
-            // Création d'une ligne pour chaque étudiant
-            var row = document.createElement('tr');
-            row.innerHTML = '<td>' + studentItem.lastname + '</td>' +
-                            '<td>' + studentItem.firstname + '</td>' +
-                            '<td>' + studentItem.email + '</td>' +
-                            '<td>' + studentItem.phone + '</td>' +
-                            '<td>' + studentItem.address + '</td>' +
-                            '<td>' + studentItem.zip + '</td>' +
-                            '<td>' + studentItem.city + '</td>' +
-                            '<td>' + studentItem.class + '</td>' +
-                            '<td><button class="btn btn-primary" onclick="redirectToUpdatePageStudent(' + studentId + ')">Modifier</button></td>';
+            try {
+                var className = await getClassName(studentItem.class);
 
-            studentTable.appendChild(row);
+                // Création d'une ligne pour chaque étudiant
+                var row = document.createElement('tr');
+                row.innerHTML = '<td>' + studentItem.lastname + '</td>' +
+                                '<td>' + studentItem.firstname + '</td>' +
+                                '<td>' + studentItem.email + '</td>' +
+                                '<td>' + studentItem.phone + '</td>' +
+                                '<td>' + studentItem.address + '</td>' +
+                                '<td>' + studentItem.zip + '</td>' +
+                                '<td>' + studentItem.city + '</td>' +
+                                '<td>' + className + '</td>' +
+                                '<td><button class="btn btn-primary" onclick="redirectToUpdatePageStudent(' + studentId + ')">Modifier</button></td>';
+
+                studentTable.appendChild(row);
+            } catch (error) {
+                console.error(error);
+            }
         }
     }
 }
+
 
 // Fonction pour rediriger vers la page de mise à jour avec le formulaire pré-rempli
 function redirectToUpdatePageStudent(studentId) {
