@@ -311,7 +311,7 @@ function getDataClass(){
 /**
  * Fonction pour récupérer les données des étudiants
  */
-function getDataStudients(){
+function getDataStudents(){
     $data = [];
 
     if (($handle = fopen("CSV/students.csv", 'r')) !== false) {
@@ -387,7 +387,7 @@ function handleStudentRequestPatch($studentId){
         // On détermine quelles données ont été envoyées
         echo json_encode($patchData);
 
-        $data = getDataStudients();
+        $data = getDataStudents();
 
         if(isset($patchData['lastname'])){
             $data[$studentId]['lastname'] = $patchData['lastname'];

@@ -1,19 +1,24 @@
 <?php
 
-require_once 'functions.php';
+require_once 'API/functions.php';
 
 header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
 
 $uri = $_SERVER['REQUEST_URI'];
 $data = [];
 
 switch ($uri) {
     case '/class':
-        var_dump(getDataClass());
+        echo json_encode(getDataClass());
         handleClassRequest();
         break;
 
     case '/students':
+        echo json_encode(getDataStudents());
         handleStudentRequest();
         break;
 
@@ -41,5 +46,5 @@ switch ($uri) {
         exit;
 }
 
-echo json_encode($data);
+// echo json_encode($data);
 
