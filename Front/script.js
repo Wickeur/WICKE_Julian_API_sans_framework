@@ -36,7 +36,7 @@ function displayClassList(classes) {
 
     // Création de l'en-tête du tableau
     var headerRow = document.createElement('tr');
-    headerRow.innerHTML = '<th>Nom de la classe</th><th>Niveau</th>';
+    headerRow.innerHTML = '<th>Nom de la classe</th><th>Niveau</th><th>Actions</th>';
     classTable.appendChild(headerRow);
 
     // Parcours des classes
@@ -47,13 +47,18 @@ function displayClassList(classes) {
             // Création d'une ligne pour chaque classe
             var row = document.createElement('tr');
             row.innerHTML = '<td>' + classItem.name + '</td>' +
-                            '<td>' + classItem.level + '</td>';
+                            '<td>' + classItem.level + '</td>' +
+                            '<td><button class="btn btn-primary" onclick="redirectToUpdatePageClass(' + classId + ')">Modifier</button></td>';
 
             classTable.appendChild(row);
         }
     }
 }
 
+// Fonction pour rediriger vers la page de mise à jour avec le formulaire pré-rempli
+function redirectToUpdatePageClass(classId) {
+    window.location.href = 'update-class/update-class.html?id=' + classId;
+}
 
 // Fonction pour afficher la liste des étudiants en format tableau
 function displayStudentList(students) {
@@ -62,7 +67,7 @@ function displayStudentList(students) {
 
     // Création de l'en-tête du tableau
     var headerRow = document.createElement('tr');
-    headerRow.innerHTML = '<th>Nom</th><th>Prénom</th><th>Email</th><th>Téléphone</th><th>Adresse</th><th>Code Postal</th><th>Ville</th><th>Classe</th>';
+    headerRow.innerHTML = '<th>Nom</th><th>Prénom</th><th>Email</th><th>Téléphone</th><th>Adresse</th><th>Code Postal</th><th>Ville</th><th>Classe</th><th>Actions</th>';
     studentTable.appendChild(headerRow);
 
     // Parcours des étudiants
@@ -79,11 +84,17 @@ function displayStudentList(students) {
                             '<td>' + studentItem.address + '</td>' +
                             '<td>' + studentItem.zip + '</td>' +
                             '<td>' + studentItem.city + '</td>' +
-                            '<td>' + studentItem.class + '</td>';
+                            '<td>' + studentItem.class + '</td>' +
+                            '<td><button class="btn btn-primary" onclick="redirectToUpdatePageStudent(' + studentId + ')">Modifier</button></td>';
 
             studentTable.appendChild(row);
         }
     }
+}
+
+// Fonction pour rediriger vers la page de mise à jour avec le formulaire pré-rempli
+function redirectToUpdatePageStudent(studentId) {
+    window.location.href = 'update-student/update-student.html?id=' + studentId;
 }
 
 // Fonction pour ajouter une classe
@@ -145,8 +156,6 @@ function addStudent() {
         }
     });
 }
-
-
 
 getClassList();
 getStudentList();
