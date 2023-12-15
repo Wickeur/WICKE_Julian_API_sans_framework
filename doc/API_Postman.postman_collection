@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "bda6a55e-9d90-40b5-8bfc-db1ca186d0dd",
+		"name": "API_sans_Framework",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28379613"
+	},
+	"item": [
+		{
+			"name": "get",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "get_class",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "post_students",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"class3\",\r\n    \"level\": \"5\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8000/class",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"class"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post_class",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8000/class",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"class"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put_class",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"4\",\r\n    \"name\": \"test\",\r\n    \"level\": \"A1\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8000/class/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"class",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put_student",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lastname\": \"NouveauNom\",\r\n    \"firstname\": \"NouveauPrenom\",\r\n    \"email\": \"nouveau@email.com\",\r\n    \"phone\": \"NouveauNum\",\r\n    \"address\": \"NouvelleAdresse\",\r\n    \"zip\": \"NouveauCodePostal\",\r\n    \"city\": \"NouvelleVille\",\r\n    \"class\": \"NouvelleClasse\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8000/students/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"students",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch_class",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"test2\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "localhost:8000/class/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"class",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch_students",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lastname\": \"Ici\",\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8000/students/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"students",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
