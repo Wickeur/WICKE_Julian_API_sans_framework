@@ -1,0 +1,97 @@
+openapi: 3.0.0
+info:
+  title: API_sans_Framework
+  version: 1.0.0
+paths:
+  /class:
+    get:
+      summary: Get all classes
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new class
+      requestBody:
+        content:
+          application/json:
+            example:
+              name: class3
+              level: '5'
+      responses:
+        '200':
+          description: Successful response
+  /class/{id}:
+    put:
+      summary: Update a class
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              id: '4'
+              name: test
+              level: A1
+      responses:
+        '200':
+          description: Successful response
+    patch:
+      summary: Partially update a class
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              name: test2
+      responses:
+        '200':
+          description: Successful response
+  /students/{id}:
+    put:
+      summary: Update a student
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              lastname: NouveauNom
+              firstname: NouveauPrenom
+              email: nouveau@email.com
+              phone: NouveauNum
+              address: NouvelleAdresse
+              zip: NouveauCodePostal
+              city: NouvelleVille
+              class: NouvelleClasse
+      responses:
+        '200':
+          description: Successful response
+    patch:
+      summary: Partially update a student
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              lastname: Ici
+      responses:
+        '200':
+          description: Successful response

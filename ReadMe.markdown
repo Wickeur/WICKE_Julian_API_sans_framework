@@ -10,21 +10,6 @@ Ce projet vise à fournir une interface Web simple pour gérer les classes et le
 - Modification des détails d'une classe.
 - Modification des détails d'un étudiant.
 
-## Installation
-
-1. Clonez le repository :
-
-    ```bash
-    git clone https://github.com/Wickeur/WICKE_Julian_API_sans_framework.git
-    cd ProjetGestionClassesEtudiants
-    ```
-
-2. Installez les dépendances :
-
-    ```bash
-    npm install
-    ```
-
 ## Utilisation
 
 1. Démarrez le serveur :
