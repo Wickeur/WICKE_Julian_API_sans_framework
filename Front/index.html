@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Classes et des Étudiants</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
 <body>
 
     <div class="container mt-5">
-        <h1>Gestion des Classes et des Étudiants</h1>
+        <h1 style="text-align: center">Gestion des Classes et des Étudiants</h1>
     
-        <a href="add-class/add-class.html">Ajouter une Classe</a>
-     
-        <a href="add-student/add-student.html">Ajouter un Étudiant</a>
+        <div style="position: absolute; top:10%; right: 4%">
+            <a class="btn btn-secondary" href="add-class/add-class.html" style="margin-bottom: 10px;">Ajouter une Classe</a>
+            <br>
+            <a class="btn btn-secondary" href="add-student/add-student.html">Ajouter un Étudiant</a>
+        </div>
         
         <!-- Affichage des classes et des étudiants -->
         <div class="mt-4">
             <h3>Liste des Classes</h3>
-            <table id="classTable"></table>
-
+            <table class="table table-striped" id="classTable"></table>
+            
             <h3 class="mt-4">Liste des Étudiants</h3>
-            <table id="studentTable"></table>
+            <table class="table table-striped" id="studentTable"></table>
 
         </div>
     </div>

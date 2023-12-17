@@ -1,35 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier l'Étudiant</title>
-    <!-- Ajoutez le lien vers jQuery ici si nécessaire -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
-    <h3>Modifier l'Étudiant</h3>
-    <form id="updateStudentForm">
-        <label for="updateStudentFirstName">Prénom:</label>
-        <input type="text" id="updateStudentFirstName" class="form-control" required>
-        <label for="updateStudentLastName">Nom:</label>
-        <input type="text" id="updateStudentLastName" class="form-control" required>
-        <label for="updateStudentEmail">Email:</label>
-        <input type="email" id="updateStudentEmail" class="form-control" required>
-        <label for="updateStudentPhone">Téléphone:</label>
-        <input type="tel" id="updateStudentPhone" class="form-control" required>
-        <label for="updateStudentAddress">Adresse:</label>
-        <input type="text" id="updateStudentAddress" class="form-control" required>
-        <label for="updateStudentZip">Code Postal:</label>
-        <input type="text" id="updateStudentZip" class="form-control" required>
-        <label for="updateStudentCity">Ville:</label>
-        <input type="text" id="updateStudentCity" class="form-control" required>
-        <label for="updateStudentClass">Classe:</label>
-        <input type="number" id="updateStudentClass" class="form-control" required>
-        <button type="button" class="btn btn-primary mt-2" onclick="updateStudent()">Modifier Étudiant</button>
-    </form>
+    <div class="container mt-5">
+        <h3>Modifier l'Étudiant</h3>
+        <form id="updateStudentForm">
+            <div class="form-group">
+                <label for="updateStudentFirstName">Prénom:</label>
+                <input type="text" id="updateStudentFirstName" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="updateStudentLastName">Nom:</label>
+                <input type="text" id="updateStudentLastName" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="updateStudentEmail">Email:</label>
+                <input type="email" id="updateStudentEmail" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="updateStudentPhone">Téléphone:</label>
+                <input type="tel" id="updateStudentPhone" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="updateStudentAddress">Adresse:</label>
+                <input type="text" id="updateStudentAddress" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="updateStudentZip">Code Postal:</label>
+                <input type="text" id="updateStudentZip" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="updateStudentCity">Ville:</label>
+                <input type="text" id="updateStudentCity" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="updateStudentClass">Classe:</label>
+                <input type="number" id="updateStudentClass" class="form-control" required>
+            </div>
+            <button type="button" class="btn btn-primary mt-2" onclick="updateStudent()">Modifier Étudiant</button>
+        </form>
+    </div>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="update-student.js"></script>
 </body>
