@@ -20,7 +20,7 @@ Ce projet vise à fournir une interface Web simple pour gérer les classes et le
 
     Le serveur sera accessible à l'adresse [http://localhost:8000](http://localhost:8000).
 
-2. Ouvrez le fichier `index.html` dans votre navigateur pour accéder à l'interface.
+2. Ouvrez le fichier `Front/index.html` dans votre navigateur pour accéder à l'interface.
 
 3. Utilisez l'interface pour ajouter, afficher et modifier les classes et les étudiants.
 
